@@ -1,7 +1,9 @@
 FROM mjgargani/puppeteer:trybe1.0
 
-ADD node_modules.tar.gz /todo-app/tests
+WORKDIR /tests
 
-COPY . /todo-app/tests
+ADD node_modules.tar.gz .
 
-ENTRYPOINT [ "npm", "test" ]
+COPY . .
+
+CMD [ "npm", "test" ]
