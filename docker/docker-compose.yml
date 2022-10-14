@@ -6,23 +6,25 @@ services:
     image: todobackend
     restart: always
     ports: 
-      - 3031:3031
+      - 3001:3001
 
   todofront:
     image: todofrontend
     restart: always
     ports:
-      - 3030:3030
+      - 3000:3000
     depends_on:
       - todoback
     environment:
-      - REACT_APP_API_HOST: todoback
+      - REACT_APP_API_HOST=todoback
+      - REACT_APP_API_PORT=3001
 
   todotests:
     image: todotests
     restart: always
     environment:
-      - FRONT_HOST: todofront
+      - FRONT_HOST=todofront
+      - FRONT_PORT=3000
     depends_on:
       - todofront
       - todoback
